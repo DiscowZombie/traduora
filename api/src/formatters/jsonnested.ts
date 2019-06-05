@@ -9,9 +9,6 @@ export const jsonNestedParser: Parser = async (data: string) => {
   }
 
   const traverse = (obj, level = 0, parentTerm = undefined) => {
-    if (level >= 6) {
-      throw new Error('Too many nested levels in JSON content');
-    }
     for (const key of Object.keys(obj)) {
       const value = obj[key];
       if (typeof value === 'string') {

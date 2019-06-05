@@ -60,15 +60,6 @@ test('should fail if file is malformed or empty', async () => {
   }
 });
 
-test('should fail if the nested JSON goes above 5 levels', async () => {
-  const ok = '{ "0": { "1": { "2": { "3": { "4": { "5": "" } } } } } }';
-  const tooMany = '{ "0": { "1": { "2": { "3": { "4": { "5": { "6": "" } } } } } } }';
-
-  expect.assertions(2);
-  await expect(jsonNestedParser(ok)).resolves.toBeDefined();
-  await expect(jsonNestedParser(tooMany)).rejects.toBeDefined();
-});
-
 test('should export json nested files', async () => {
   const result = await jsonNestedExporter(simpleFormatFixture);
   const expected = loadFixture('simple-nested.json');
